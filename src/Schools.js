@@ -17,17 +17,8 @@ class Schools extends Component {
 	this.handlePageChange = this.handlePageChange.bind(this)
   }
   
-  handlePageChange(pageNumber) {
-	  
-    this.setState({activePage: pageNumber});
-    
-    //get the new page of results
-    
-    var skip = (pageNumber - 1) * 25;
-    
-    console.log(skip);
-    
-    const schools = client.service('schools');
+  handleQuery(skip) {
+	const schools = client.service('schools');
     
     Promise.all([
         schools.find({
@@ -42,36 +33,26 @@ class Schools extends Component {
     ]).then( ([ schoolPage ]) => {
 	    const schools = schoolPage.data;
 	    
-	    this.setState({ schools });
-    });
-    
-    console.log(this.state);
-
-  }
-
-  componentDidMount() {
-    const schools = client.service('schools');
-    
-    Promise.all([
-        schools.find({
-          query: {
-            $limit: 25,
-            $sort: {
-	            name: 1
-            }
-          }
-        })
-    ]).then( ([ schoolPage ]) => {
-	    const schools = schoolPage.data;
-	    
 	    this.setState({ 
 		    schools,
 		    schoolsPerPage: schoolPage.limit,
 		    totalSchools: schoolPage.total
 		});
-		
     });
- 
+
+  }
+  
+  handlePageChange(pageNumber) {
+	  
+    this.setState({activePage: pageNumber});
+    
+    //get the new page of results
+    var skip = (pageNumber - 1) * 25;
+    this.handleQuery(skip);
+  }
+
+  componentDidMount() {
+  	this.handleQuery(0); 
   }
   
   render() {
