@@ -16,11 +16,11 @@ import {
   DropdownToggle,
   DropdownMenu,
   DropdownItem } from 'reactstrap';
-import Home from './Home'
-import About from './About'
-import School from './School'
-import Schools from './Schools'
-import client from './feathers'
+import Home from './components/Home'
+import About from './components/About'
+import School from './components/School'
+import Schools from './components/Schools'
+import client from './components/feathers'
 
 
 
