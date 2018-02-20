@@ -1,21 +1,57 @@
 import React, { Component } from "react";
- 
-class Home extends Component {
-  render() {
-    return (
-      <div>
-        <h2>Schools</h2>
-        <p>Cras facilisis urna ornare ex volutpat, et
-        convallis erat elementum. Ut aliquam, ipsum vitae
-        gravida suscipit, metus dui bibendum est, eget rhoncus nibh
-        metus nec massa. Maecenas hendrerit laoreet augue
-        nec molestie. Cum sociis natoque penatibus et magnis
-        dis parturient montes, nascetur ridiculus mus.</p>
- 
-        <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
-      </div>
-    );
+import client from './feathers'
+
+
+
+class Schools extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = { schools: [] };
   }
-}
+
+  componentDidMount() {
+    const schools = client.service('schools');
+    
+    Promise.all([
+        schools.find({
+          query: {
+            $limit: 25
+          }
+        })
+    ]).then( ([ schoolPage ]) => {
+	    const schools = schoolPage.data;
+	    
+	    this.setState({ schools });
+    });
  
-export default Home;
+  }
+  
+  render() {
+	  
+	  return (
+		  <div>
+		  	<h1>Schools</h1> 
+          
+          	{this.state.schools.map(school =>
+	          	<p>
+	          	<a href={'/school/' + school.id}>{school.name}</a>
+	         	</p>   	
+	
+	        )}
+		  	
+		  	
+		  
+		  
+		  
+		  </div>
+	  )
+	  
+		
+		
+		
+	}
+	
+}
+
+export default Schools;

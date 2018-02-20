@@ -6,7 +6,9 @@ import {
 } from 'react-router-dom'
 import Home from './Home'
 import About from './About'
+import School from './School'
 import Schools from './Schools'
+import client from './feathers'
 
 
 const Main = () => (
@@ -23,6 +25,7 @@ const Main = () => (
       <Route exact path="/" component={Home}/>
       <Route path="/about" component={About}/>
       <Route path="/schools" component={Schools}/>
+      <Route path="/school/:id" component={School}/>
     </div>
   </Router>
 )
