@@ -15,7 +15,10 @@ import {
   UncontrolledDropdown,
   DropdownToggle,
   DropdownMenu,
-  DropdownItem } from 'reactstrap';
+  DropdownItem,
+  Container,
+  Row,
+  Col } from 'reactstrap';
 import Home from './components/Home'
 import About from './components/About'
 import School from './components/School'
@@ -43,31 +46,32 @@ class Main extends Component {
   
   render() {
 	  return(
-		  <Router>
-		    <div>
-		    	<Navbar color="faded" light expand="md">
-		    		<NavbarBrand href="/">opencampusdata</NavbarBrand>
-		    		 <NavbarToggler onClick={this.toggle} />
-					 <Collapse isOpen={this.state.isOpen} navbar>
-					 	<Nav className="ml-auto" navbar>
-					 		<NavItem>
-					 			<NavLink href="/">Home</NavLink>
-					 			<NavLink href="/about">About</NavLink>
-					 			<NavLink href="/schools">Schools</NavLink>
-					 		</NavItem>
-					 	</Nav>
-					 </Collapse>
-				</Navbar>
-		
-		      <hr/>
-		
-		      <Route exact path="/" component={Home}/>
-		      <Route path="/about" component={About}/>
-		      <Route path="/schools" component={Schools}/>
-		      <Route path="/school/:id" component={School}/>
-		    </div>
-		  </Router>
-
+		  <Container>
+			  <Router>
+			    <div>
+			    	<Navbar color="faded" light expand="md">
+			    		<NavbarBrand href="/">opencampusdata</NavbarBrand>
+			    		 <NavbarToggler onClick={this.toggle} />
+						 <Collapse isOpen={this.state.isOpen} navbar>
+						 	<Nav className="ml-auto" navbar>
+						 		<NavItem>
+						 			<NavLink href="/">Home</NavLink>
+						 			<NavLink href="/about">About</NavLink>
+						 			<NavLink href="/schools">Schools</NavLink>
+						 		</NavItem>
+						 	</Nav>
+						 </Collapse>
+					</Navbar>
+			
+			      <hr/>
+			
+			      <Route exact path="/" component={Home}/>
+			      <Route path="/about" component={About}/>
+			      <Route path="/schools" component={Schools}/>
+			      <Route path="/school/:id" component={School}/>
+			    </div>
+			  </Router>
+		  </Container>
 	  );
   }
 

@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import client from './feathers'
 import Pagination from "react-js-pagination";
-
+import { Container, Row, Col, ListGroup, ListGroupItem } from 'reactstrap';
 
 class Schools extends Component {
   constructor(props) {
@@ -60,13 +60,21 @@ class Schools extends Component {
 	  return (
 		  <div>
 		  	<h1>Schools</h1> 
-          
-          	{this.state.schools.map(school =>
-	          	<p>
-	          	<a href={'/school/' + school.id}>{school.name}</a>
-	         	</p>   	
-	
-	        )}
+		  	
+		  	<ListGroup>
+	          	{this.state.schools.map(school =>
+		          	<div>
+		          	<ListGroupItem>
+
+			          	<p><a href={'/school/' + school.id}>{school.name}</a></p>
+			          	<p>{school.city}, {school.state}</p>
+			          	<p><a href={'/school/' + school.id}>View More Details</a></p>
+			         	
+			        </ListGroupItem>
+			        <br />
+			        </div>
+		        )}
+		  	</ListGroup>
 		  	
 			<div>
 		        <Pagination
