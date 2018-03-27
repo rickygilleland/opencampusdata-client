@@ -55,7 +55,14 @@ class School extends Component {
 		  <div>
 		  	<h1>{this.state.school.name}</h1> 
 		  	<hr/>
-		  	<a href={this.state.school.url}>{this.state.school.url}</a>
+		  	<Row>
+		  		<Col xs="6">
+			  		<p class="lead">{this.state.school.city}, {this.state.school.state}</p>
+			  	</Col>
+			  	<Col xs="6">
+			  		<p class="text-right lead"><a href={this.state.school.url}>{this.state.school.url}</a></p>
+			  	</Col>
+			</Row>
           
 		  
 		  	<h2>Crime Statistics</h2>
