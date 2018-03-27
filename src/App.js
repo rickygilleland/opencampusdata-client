@@ -23,6 +23,7 @@ import Home from './components/Home'
 import About from './components/About'
 import School from './components/School'
 import Schools from './components/Schools'
+import Map from './components/Map'
 import client from './components/feathers'
 
 
@@ -69,6 +70,7 @@ class Main extends Component {
 			      <Route path="/about" component={About}/>
 			      <Route path="/schools" component={Schools}/>
 			      <Route path="/school/:id" component={School}/>
+			      <Route path="/map" component={Map}/>
 			    </div>
 			  </Router>
 		  </Container>
